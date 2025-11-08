@@ -58,23 +58,9 @@ app.get('/pokemon', (req, res) => {
 })
 
 app.get('/pokemon/:id', (req, res) => {
-  const origin = req.header('origin')
-  if (ACCEPTED_ORIGINS.includes(origin) || !origin) { 
-    /* 
-    Le coloco !origin porque, si la solicitud viene del mismo origin de la API (localhost:1234 en este caso)
-    no existe el header de origin en el navegador, por lo que no entraría en este if si no cubro ese caso
-    
-    Esto es lo que se hizo inicialmente, despues use la dependencia
-    cors arriba y le puse los dominios que debe permitir,
-    por defecto acepta todos con '*'
-    */
-
-    res.header('Access-Control-Allow-Origin', origin)
-  }
-
   const { id } = req.params
   const pokemonIndex = pokemon.find(pokemon => pokemon.id === id)
-  console.log(pokemonIndex)
+
   res.json(pokemonIndex)
 })
 
