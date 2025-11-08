@@ -1,0 +1,24 @@
+GET http://localhost:1234/pokemon
+
+###
+
+POST http://localhost:1234/pokemon
+Content-Type: application/json
+
+{
+  "name": "cacamon",
+  "type": ["ghost"],
+  "skill": "gengarshot"
+}
+
+### Actualizar parte del pokemon
+
+PATCH http://localhost:1234/pokemon/1
+Content-Type: application/json
+
+{
+  "skill": "chorezaMaxima"
+}
+
+### Borrar un pokemon
+DELETE http://localhost:1234/pokemon/1

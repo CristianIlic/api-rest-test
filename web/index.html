@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Probar API Rest</title>
+    <script type="module">
+      fetch("http://localhost:1234/pokemon")
+        .then((res) => res.json())
+        .then((pokemons) => {
+          const html = pokemons
+            .map((pokemon) => {
+              return `
+          <article data-id="${pokemon.id}">
+            <h2>${pokemon.name}</h2>
+            <p>${pokemon.skill}</p>
+
+            <button>Eliminar</button>
+            </article>
+          `;
+            })
+            .join("");
+
+          document.querySelector("main").innerHTML = html;
+
+          document.addEventListener("click", (e) => {
+            if (e.target.matches("button")) {
+              const article = e.target.closest("article");
+              const id = article.dataset.id;
+
+              fetch(`http://localhost:1234/pokemon/${id}`, {
+                method: "DELETE",
+              }).then((res) => {
+                if (res.ok) {
+                  article.remove();
+                }
+              });
+            }
+          });
+        });
+    </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+### Recuperar todas las películas
+GET http://localhost:1234/movies
+
+### Recuperar película por id
+GET http://localhost:1234/movies/7e3fd5ab-60ff-4ae2-92b6-9597f0308d1
+
+### Recuperar todas las películas según género
+GET http://localhost:1234/movies?genre=Action
